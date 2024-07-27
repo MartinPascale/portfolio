@@ -13,8 +13,7 @@ type Project = {
 };
 
 const ProjectsPage = async () => {
-  const baseUrl = process.env.NEXT_PUBLIC_BASE_URL;
-  const res = await fetch(`${baseUrl}/api/projects`);
+  const res = await fetch(`/api/projects`);
   const projects: Project[] = await res.json();
 
   return (

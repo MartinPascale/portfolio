@@ -7,8 +7,7 @@ type Project = {
 };
 
 const ProjectPage = async ({ params }: { params: { id: string } }) => {
-  const baseUrl = process.env.NEXT_PUBLIC_BASE_URL;
-  const res = await fetch(`${baseUrl}/api/projects/${params.id}`);
+  const res = await fetch(`/api/projects/${params.id}`);
   const project: Project = await res.json();
 
   return (
