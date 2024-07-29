@@ -14,6 +14,7 @@
     "@emotion/styled": "^11.13.0",
     "framer-motion": "^7.10.3",
     "next": "14.2.5",
+    "openai": "^4.53.2",
     "react": "^18",
     "react-dom": "^18"
   },

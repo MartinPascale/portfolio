@@ -1,10 +1,15 @@
+'use client';
 import { Button } from '@chakra-ui/react';
 import { motion } from 'framer-motion';
 import React, { PropsWithChildren } from 'react';
 
 const MotionButton = motion(Button);
 
-const AnimatedButton = ({ children }: PropsWithChildren) => {
+type AnimatedButtonProps = PropsWithChildren<
+  React.ComponentProps<typeof Button>
+>;
+
+const AnimatedButton = ({ children, ...rest }: AnimatedButtonProps) => {
   return (
     <MotionButton
       whileHover={{
@@ -15,6 +20,7 @@ const AnimatedButton = ({ children }: PropsWithChildren) => {
         backgroundColor: '#ECB77A',
       }}
       whileTap={{ scale: 0.9 }}
+      {...rest}
     >
       {children}
     </MotionButton>

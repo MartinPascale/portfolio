@@ -45,24 +45,9 @@ const HomePage = () => {
       >
         <Text fontSize={{ base: '4xl', md: '8xl' }}>HI IM MARTIN!</Text>
         <Text fontSize={{ base: 'xl', md: '4xl' }}>
-          IM A SENIOR SOFTWARE ENGINEER AT CONSTELLATION AND I LIKE TO
+          IM A SENIOR SOFTWARE ENGINEER, AND YOU CAN ASK THE REST TO MY AI
+          ASSISTANT BELOW 👇
         </Text>
-        <AnimatePresence mode="wait">
-          <MotionText
-            fontSize={{ base: 'xl', md: '4xl' }}
-            key={activityIndex}
-            initial={{ opacity: 0, y: -50 }}
-            animate={{ opacity: 1, y: 0 }}
-            exit={{ opacity: 0, y: 50 }}
-            transition={{
-              type: 'spring',
-              stiffness: 500,
-              damping: 30,
-            }}
-          >
-            {` ${activities[activityIndex]} `}
-          </MotionText>
-        </AnimatePresence>
       </MotionBox>
       <Box w={{ base: '100%', md: '100%', lg: '66%' }}>
         <ChatbotUI />

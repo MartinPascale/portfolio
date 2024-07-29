@@ -6,6 +6,7 @@ interface AnimatedTextProps {
   fontSize: string;
   duration: number; // Duration of the animation in seconds
   amplitude: number; // Amplitude of the movement
+  className?: string;
 }
 
 const AnimatedText: React.FC<AnimatedTextProps> = ({
@@ -13,6 +14,7 @@ const AnimatedText: React.FC<AnimatedTextProps> = ({
   fontSize,
   duration,
   amplitude,
+  className = '',
 }) => {
   const letters = Array.from(text);
   const keyframes = generateParabolicKeyframes(duration, amplitude);
@@ -22,8 +24,7 @@ const AnimatedText: React.FC<AnimatedTextProps> = ({
     visible: {
       opacity: 1,
       transition: {
-        staggerChildren: 1, // Increase this value for more delay between letters
-        delayChildren: Math.random() * 5, // Random delay for each letter
+        staggerChildren: Math.max(0.5, duration - 0.5),
       },
     },
   };
@@ -43,13 +44,13 @@ const AnimatedText: React.FC<AnimatedTextProps> = ({
     },
     hidden: {
       opacity: 1,
-      y: 0, // Starting at the vertex height
+      y: amplitude / 2,
     },
   };
 
   return (
     <motion.div
-      className="animated-text"
+      className={`animated-text ${className}`}
       variants={container}
       initial="hidden"
       animate="visible"
