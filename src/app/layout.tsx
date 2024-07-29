@@ -2,6 +2,7 @@ import { ReactNode } from 'react';
 import { Box, Link } from '@chakra-ui/react';
 import Chakra from './chakra';
 import '../styles/globals.css';
+import '../styles/crt-effect.css';
 
 type RootLayoutProps = {
   children: ReactNode;
@@ -10,10 +11,10 @@ type RootLayoutProps = {
 export default function RootLayout({ children }: RootLayoutProps) {
   return (
     <html lang="en">
-      <body>
+      <body className="crt-effect tv-frame tv-screen">
         <Chakra>
           <header>
-            <Box as="nav" padding="20px">
+            <Box as="nav" padding="20px" mt="-30px">
               <Link href="/" marginRight="10px">
                 Home
               </Link>
