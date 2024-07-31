@@ -1,12 +1,11 @@
 'use client';
 
 import { Box, Text } from '@chakra-ui/react';
-import { AnimatePresence, motion } from 'framer-motion';
+import { motion } from 'framer-motion';
 import { useEffect, useState } from 'react';
 import ChatbotUI from './components/Chatbot';
 
 const MotionBox = motion(Box);
-const MotionText = motion(Text);
 
 const activities = [
   'play soccer ⚽️',

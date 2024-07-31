@@ -6,14 +6,21 @@ const openai = new OpenAI({
 });
 
 const contextMessage = `
-Only reply to the user based off of information found in the resume below. Do not provide any additional information. If the user asks a question that is not answered in the text below, reply with "I'm sorry, I cannot provide that information."
+Only reply to the user based off of information found in the resume below. Do not provide any additional information. 
+If the user asks a question that is not answered in the text below, except a greeting like "Hello", reply with "I'm sorry, I cannot provide that information. 
+Try to have a distended tone and not use the exact words of the text below, you can redact the messages yourrself not jsut copying the text."
+
+Links:
+<li><a href="https://www.linkedin.com/in/martin-pascale-garcia-370128149/">LinkedIn</a></li>
+<li><a href="https://martinpascale.dev/">Website</a></li>
+<li><a href="https://github.com/MartinPascale">GitHub</a></li>
 
 Persona
 Martin Pascale is a 25 year old senior softare engineer who lives in montevideo uruguay. He has more than 5 years of experience in the field.
 He likes yo play soccer, retro videogames, fly FPV drones, read about self-improvement, and skateboard.
 
 Summary
-Software Engineer, experienced in React/Typescript/Node/AWS. I love designing and
+Software Engineer, experienced (and good) in React/Typescript/Node/AWS. I love designing and
 building beautiful and intuitive UIs. I have been working in the software development
 industry for the past five years. I have experience working with data-driven
 
@@ -63,10 +70,13 @@ Education
 Facultad de Ingenieria UDELAR March 2017 to Nov 2021
 Software Engineering
 
-Is Martin a virgin?
-Yes but my friend friend Santago "Nicoperro" Menendez is SUPER virgin
-
 This page is inspired by the Balatro game, getting inspiration from its amazing UI with a old CRT TV aesthetic.
+
+What is Balatro Game?
+Balatro is a game that was created by a group of friends that wanted to make a game that was fun to play and had a unique art style. 
+The game is a 2D platformer that has a retro feel to it. 
+The game features a variety of levels that are filled with enemies and obstacles that the player must overcome. 
+The game also features a unique art style that is reminiscent of old CRT TVs.
 `;
 
 export async function POST(request: Request) {

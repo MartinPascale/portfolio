@@ -96,7 +96,7 @@ main {
 }
 
 .user-message {
-  background-color: #f8e71c;
+  background-color: #9e4440;
   padding: 10px 15px;
   color: #ecf8ff;
   align-self: flex-end;
@@ -107,7 +107,7 @@ main {
 }
 
 .bot-message {
-  background-color: #9fa8b4;
+  background-color: #13599c;
   padding: 10px 15px;
   color: #000000;
   text-shadow: none;
