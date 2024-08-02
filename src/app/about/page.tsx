@@ -1,57 +1,91 @@
 'use client';
-import { Box, Heading, Text } from '@chakra-ui/react';
-import { AnimatePresence, motion } from 'framer-motion';
-import { useState, useEffect } from 'react';
-import AboutCardList from '../components/AboutCardList';
+import { Box, Heading, List, Text } from '@chakra-ui/react';
+import { useState } from 'react';
+import AnimatedText from '../components/AnimatedText';
+import AboutCardList from '../components/CardList';
+import { infoCards, profileInfoContent } from '@/constants/profileInfo';
 
-const MotionBox = motion(Box);
-
-const activities = [
-  'play soccer ⚽️',
-  'fly FPV drones 🚁',
-  'read about self-improvement 📚',
-  'skateboard 🛹',
-  'play video games 🎮',
-];
+const defaultSelectedCardId: number = 1;
 
 const AboutPage = () => {
-  const [activityIndex, setActivityIndex] = useState(0);
+  const [selectedCardId, setSelectedCardId] = useState<number | null>(
+    defaultSelectedCardId,
+  );
+  const [cards, setCards] = useState(infoCards);
 
-  useEffect(() => {
-    const interval = setInterval(() => {
-      setActivityIndex((prevIndex) => (prevIndex + 1) % activities.length);
-    }, 3000);
-    return () => clearInterval(interval);
-  }, []);
+  const moveCard = (dragIndex: number, hoverIndex: number) => {
+    const newCards = [...cards];
+    const [removed] = newCards.splice(dragIndex, 1);
+    newCards.splice(hoverIndex, 0, removed);
+    setCards(newCards);
+  };
+
+  const handleSelectCard = (id: number) => {
+    setSelectedCardId(id === selectedCardId ? null : id);
+  };
 
   return (
-    <Box padding="20px" maxWidth="800px" margin="auto">
-      <Heading as="h1" marginBottom="10px">
-        About Me
-      </Heading>
-      <Text fontSize="4xl" display="inline">
-        I like to
-      </Text>
-      <AnimatePresence mode="wait">
-        <MotionBox
-          key={activityIndex} // Key changes on every activity change to trigger the animation
-          initial={{ opacity: 0, y: -20 }}
-          animate={{ opacity: 1, y: 0 }}
-          exit={{ opacity: 0, y: 20 }}
-          transition={{
-            type: 'spring',
-            stiffness: 500,
-            damping: 30,
+    <Box>
+      <Box className="box-container" height="500px">
+        <Box className="box-header">
+          <AnimatedText
+            className="header-text"
+            fontSize="2xl"
+            text={
+              selectedCardId
+                ? cards.find((card) => card.id === selectedCardId)?.content ||
+                  'About Me'
+                : 'About Me'
+            }
+            duration={3}
+            amplitude={8}
+            delay={0.8}
+          />
+        </Box>
+        <Box
+          className="box-content"
+          h="100%"
+          overflowY="auto"
+          height="calc(100% - 80px)"
+          style={{
+            scrollbarWidth: 'thin',
           }}
-          style={{ display: 'inline-block', position: 'relative' }}
         >
-          <Text fontSize="4xl" display="inline" ml={3}>
-            {`${activities[activityIndex]}`}
-          </Text>
-        </MotionBox>
-      </AnimatePresence>
-      <Box mt={10}>
-        <AboutCardList />
+          <Box mt={6} display="flex" flexDir="column">
+            {selectedCardId && profileInfoContent[selectedCardId]}
+            {!selectedCardId && (
+              <Box mt={2} w="100%">
+                <Text
+                  fontSize="4xl"
+                  sx={{
+                    padding: 2,
+                    backgroundColor: '#13599c',
+                    borderRadius: '10px',
+                    color: 'white',
+                    border: '4px solid #4d8cc1',
+                  }}
+                >
+                  Chose a card to learn more details about it 👇
+                </Text>
+              </Box>
+            )}
+          </Box>
+        </Box>
+      </Box>
+      <Box
+        position="absolute"
+        left={0}
+        bottom="-40px"
+        width="100%"
+        display="flex"
+        justifyContent="center"
+      >
+        <AboutCardList
+          cards={cards}
+          selectedCardId={selectedCardId}
+          handleSelectCard={handleSelectCard}
+          handleMoveCard={moveCard}
+        />
       </Box>
     </Box>
   );

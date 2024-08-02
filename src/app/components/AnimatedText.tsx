@@ -1,20 +1,22 @@
+import { Box } from '@chakra-ui/react';
 import { motion } from 'framer-motion';
 import React from 'react';
 
-interface AnimatedTextProps {
+type AnimatedTextProps = {
   text: string;
-  fontSize: string;
-  duration: number; // Duration of the animation in seconds
-  amplitude: number; // Amplitude of the movement
-  className?: string;
-}
+  duration?: number; // Duration of the animation in seconds
+  amplitude?: number; // Amplitude of the movement
+  delay?: number; // Delay before the animation starts
+} & React.ComponentProps<typeof Box>;
+
+const MotionBox = motion(Box);
 
 const AnimatedText: React.FC<AnimatedTextProps> = ({
   text,
-  fontSize,
-  duration,
-  amplitude,
-  className = '',
+  duration = 2,
+  amplitude = 12,
+  delay = 0.5,
+  ...rest
 }) => {
   const letters = Array.from(text);
   const keyframes = generateParabolicKeyframes(duration, amplitude);
@@ -24,7 +26,7 @@ const AnimatedText: React.FC<AnimatedTextProps> = ({
     visible: {
       opacity: 1,
       transition: {
-        staggerChildren: Math.max(0.5, duration - 0.5),
+        staggerChildren: delay,
       },
     },
   };
@@ -49,12 +51,13 @@ const AnimatedText: React.FC<AnimatedTextProps> = ({
   };
 
   return (
-    <motion.div
-      className={`animated-text ${className}`}
+    <MotionBox
+      className={`animated-text ${rest.className}`}
       variants={container}
       initial="hidden"
       animate="visible"
-      style={{ fontSize, display: 'flex' }}
+      style={{ display: 'flex' }}
+      {...rest}
     >
       {letters.map((letter, index) => (
         <motion.span
@@ -62,10 +65,12 @@ const AnimatedText: React.FC<AnimatedTextProps> = ({
           variants={child}
           style={{ display: 'inline-block', marginRight: '2px' }}
         >
+          {/* If letter is uppercase then leave a blank space before the letter */}
+          {letter === ' ' ? '\u00A0' : ''}
           {letter}
         </motion.span>
       ))}
-    </motion.div>
+    </MotionBox>
   );
 };
 

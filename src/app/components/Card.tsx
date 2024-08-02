@@ -53,9 +53,9 @@ const Card: React.FC<CardProps> = ({
 
   drag(drop(ref));
 
-  const rotation = (index - 2) * 5; // Adjust the rotation based on index
-  // Make the cards on the ends slightly lower when not selected
+  const rotation = (index - 2) * 5;
   const yPosition = isSelected ? index - 30 : index % 2 === 0 ? 10 : -10;
+
   return (
     <MotionBox
       ref={ref}
@@ -63,7 +63,7 @@ const Card: React.FC<CardProps> = ({
       style={{
         opacity: isDragging ? 0 : 1,
         cursor: 'move',
-        border: isSelected ? '2px solid grey' : 'none',
+        border: isSelected ? '2px solid #4d8cc1' : '2px solid grey',
         height: '200px',
         width: '200px',
         translateY: yPosition,

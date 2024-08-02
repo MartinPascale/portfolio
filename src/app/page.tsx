@@ -2,29 +2,11 @@
 
 import { Box, Text } from '@chakra-ui/react';
 import { motion } from 'framer-motion';
-import { useEffect, useState } from 'react';
 import ChatbotUI from './components/Chatbot';
 
 const MotionBox = motion(Box);
 
-const activities = [
-  'play soccer ⚽️',
-  'fly FPV drones 🚁',
-  'read about self-improvement 📚',
-  'skateboard 🛹',
-  'play video games 🎮',
-];
-
 const HomePage = () => {
-  const [activityIndex, setActivityIndex] = useState(0);
-
-  useEffect(() => {
-    const interval = setInterval(() => {
-      setActivityIndex((prevIndex) => (prevIndex + 1) % activities.length);
-    }, 3000);
-    return () => clearInterval(interval);
-  }, []);
-
   return (
     <Box
       sx={{

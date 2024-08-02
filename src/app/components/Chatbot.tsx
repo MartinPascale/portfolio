@@ -63,8 +63,8 @@ const ChatbotUI = () => {
   };
 
   return (
-    <Box className="chatbot-container">
-      <Box className="chatbot-header">
+    <Box className="box-container">
+      <Box className="box-header">
         <AnimatedText
           text="Chatbot"
           fontSize="20px"

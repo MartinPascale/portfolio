@@ -1,0 +1,98 @@
+.container {
+  display: flex;
+  padding: 20px;
+  margin: 0 auto;
+  min-width: 890px;
+  width: 941px;
+}
+.sidebar {
+  width: 30%;
+  padding: 20px;
+  background-color: #dce8e7;
+  border-right: 1px solid #8abdba;
+}
+.content {
+  width: 70%;
+  padding: 20px;
+}
+.section-title {
+  font-size: 22px;
+  font-weight: bold;
+  margin-top: 20px;
+  margin-bottom: 5px;
+}
+.section-divider {
+  display: block;
+  width: 100%;
+  height: 1px;
+  background-color: #8abdba;
+  margin-bottom: 20px;
+}
+.contact-info {
+  margin-bottom: 20px;
+}
+.contact-info p {
+  margin: 5px 0;
+}
+.social-links a {
+  display: block;
+  text-decoration: underline;
+  color: #000;
+  margin-bottom: 5px;
+}
+.skills,
+.certifications,
+.experience,
+.education {
+  margin-bottom: 35px;
+}
+.social-links ul,
+.skills ul,
+.certifications ul,
+.experience ul,
+.education ul {
+  list-style-type: none;
+  padding: 0;
+}
+.skills ul li,
+.certifications ul li,
+.experience ul li,
+.education ul li {
+  margin-bottom: 15px;
+}
+.sidebar h2 {
+  margin: 0;
+}
+.sidebar h3 {
+  margin: 0;
+  margin-bottom: 15px;
+}
+.experience-heading {
+  display: flex;
+  justify-content: space-between;
+  margin-top: 20px;
+}
+.experience-date {
+  font-size: 14px;
+  font-weight: 450;
+}
+.experience h4,
+p {
+  margin: 0;
+  margin-bottom: 10px;
+}
+.education h4,
+p {
+  margin: 0;
+  margin-bottom: 10px;
+}
+.experience-item {
+  width: 100%;
+  margin-bottom: 45px;
+}
+#summary-title {
+  margin-top: 0;
+}
+#experience-title {
+  margin-top: 40px;
+}

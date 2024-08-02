@@ -58,7 +58,7 @@ main {
   font-style: normal;
 }
 
-.chatbot-container {
+.box-container {
   background-color: #333;
   border: 4px solid #000;
   border-radius: 10px;
@@ -67,7 +67,7 @@ main {
   color: #ecf8ff;
 }
 
-.chatbot-header {
+.box-header {
   background-color: #555;
   padding: 10px;
   border-bottom: 4px solid #000;
@@ -99,6 +99,7 @@ main {
   background-color: #9e4440;
   padding: 10px 15px;
   color: #ecf8ff;
+  text-shadow: none;
   align-self: flex-end;
   width: 66%;
   border-top-right-radius: 4px;
@@ -109,7 +110,7 @@ main {
 .bot-message {
   background-color: #13599c;
   padding: 10px 15px;
-  color: #000000;
+  color: #ecf8ff;
   text-shadow: none;
   width: 66%;
   align-self: flex-start;
