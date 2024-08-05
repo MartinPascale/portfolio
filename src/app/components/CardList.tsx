@@ -35,6 +35,7 @@ const CardList: React.FC<CardListProps> = ({
         px={10}
         w="100%"
         gap={2}
+        maxW={{ base: '100%', md: '1200px' }}
       >
         {cards.map((card, index) => (
           <Card

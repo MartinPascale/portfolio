@@ -14,7 +14,7 @@ export default function RootLayout({ children }: RootLayoutProps) {
       <body className="crt-effect tv-frame tv-screen">
         <Chakra>
           <header>
-            <Box as="nav" pb={2}>
+            <Box as="nav" py="25px">
               <Link href="/" marginRight="10px">
                 Home
               </Link>
