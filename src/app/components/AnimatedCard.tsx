@@ -5,11 +5,12 @@ import { motion } from 'framer-motion';
 
 interface AnimatedCardProps {
   children: React.ReactNode;
+  width?: string;
 }
 
 const MotionBox = motion(Box);
 
-const AnimatedCard: React.FC<AnimatedCardProps> = ({ children }) => {
+const AnimatedCard: React.FC<AnimatedCardProps> = ({ children, width }) => {
   const [transform, setTransform] = useState({
     rotateX: 0,
     rotateY: 0,
@@ -46,7 +47,7 @@ const AnimatedCard: React.FC<AnimatedCardProps> = ({ children }) => {
         backgroundColor: 'white',
         transformStyle: 'preserve-3d',
         height: '100%',
-        width: '400px',
+        width: width ?? '400px',
         display: 'flex',
         flexDirection: 'column',
       }}

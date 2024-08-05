@@ -8,6 +8,7 @@ interface CardProps {
   id: number;
   content: string;
   index: number;
+  icon: JSX.Element;
   moveCard: (dragIndex: number, hoverIndex: number) => void;
   isSelected: boolean;
   onSelect: (id: number) => void;
@@ -18,6 +19,7 @@ const MotionBox = motion(Box);
 const Card: React.FC<CardProps> = ({
   id,
   content,
+  icon,
   index,
   moveCard,
   isSelected,
@@ -64,11 +66,9 @@ const Card: React.FC<CardProps> = ({
         opacity: isDragging ? 0 : 1,
         cursor: 'move',
         border: isSelected ? '2px solid #4d8cc1' : '2px solid grey',
-        height: '200px',
-        width: '200px',
         translateY: yPosition,
         zIndex: isSelected ? 1 : 0,
-        scale: isSelected ? 1.3 : 1,
+        scale: isSelected ? 1.2 : 1,
         rotate: rotation,
         transition: 'transform 0.2s ease-in',
       }}
@@ -77,7 +77,16 @@ const Card: React.FC<CardProps> = ({
       bg="white"
       boxShadow="lg"
       borderRadius="md"
+      h={{ base: '160px', md: '260px' }}
+      w={{ base: '75px', md: 'unset' }}
+      flex={2}
+      display="flex"
+      alignItems="center"
+      justifyContent="center"
     >
+      <Box color="#444" fontSize="xl" pos="absolute" right="16px" top="16px">
+        {icon}
+      </Box>
       <Text fontSize="2xl">{content}</Text>
     </MotionBox>
   );

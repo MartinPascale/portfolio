@@ -1,6 +1,14 @@
-import { List, Text } from '@chakra-ui/react';
+import { Box, Link, List, ListItem, Text } from '@chakra-ui/react';
 import '../styles/profileInfo.css';
 import AnimatedText from '@/app/components/AnimatedText';
+import {
+  AttachmentIcon,
+  CheckIcon,
+  HamburgerIcon,
+  InfoIcon,
+  PhoneIcon,
+} from '@chakra-ui/icons';
+import AnimatedCard from '@/app/components/AnimatedCard';
 
 interface ProfileInfoContent {
   [key: number]: JSX.Element;
@@ -41,7 +49,9 @@ export const profileInfoContent: ProfileInfoContent = {
         managers, and QA to achieve it.
       </p>
       <AnimatedText
-        text="- - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -"
+        text=". . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . ."
+        textShadow="rgb(7, 7, 7) 1px 1px 8px, rgb(7, 7, 7) 1px 1px 8px"
+        fontSize="4xl"
         textAlign="center"
         duration={2}
         amplitude={8}
@@ -60,7 +70,9 @@ export const profileInfoContent: ProfileInfoContent = {
         </p>
       </div>
       <AnimatedText
-        text="- - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -"
+        text=". . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . ."
+        textShadow="rgb(7, 7, 7) 1px 1px 8px, rgb(7, 7, 7) 1px 1px 8px"
+        fontSize="4xl"
         textAlign="center"
         duration={2}
         amplitude={8}
@@ -79,7 +91,9 @@ export const profileInfoContent: ProfileInfoContent = {
         </p>
       </div>
       <AnimatedText
-        text="- - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -"
+        text=". . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . ."
+        textShadow="rgb(7, 7, 7) 1px 1px 8px, rgb(7, 7, 7) 1px 1px 8px"
+        fontSize="4xl"
         textAlign="center"
         duration={2}
         amplitude={8}
@@ -98,7 +112,9 @@ export const profileInfoContent: ProfileInfoContent = {
         </p>
       </div>
       <AnimatedText
-        text="- - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -"
+        text=". . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . ."
+        textShadow="rgb(7, 7, 7) 1px 1px 8px, rgb(7, 7, 7) 1px 1px 8px"
+        fontSize="4xl"
         textAlign="center"
         duration={2}
         amplitude={8}
@@ -120,52 +136,122 @@ export const profileInfoContent: ProfileInfoContent = {
     </div>
   ),
   3: (
-    <List>
-      <li>mpgpascale@gmail.com</li>
-      <li>(+598) 093934252</li>
-      <li>Montevideo, Uruguay</li>
-      <li>
-        <a href="https://www.linkedin.com/in/martin-pascale-garcia-370128149/">
-          LinkedIn
-        </a>
-      </li>
-      <li>
-        <a href="https://martinpascale.dev/">Website</a>
-      </li>
-      <li>
-        <a href="https://github.com/MartinPascale">GitHub</a>
-      </li>
-    </List>
+    <Box display="flex" w="100%" justifyContent="space-around" flexDir="column">
+      <Box>
+        <Text fontSize="xl">Basic</Text>
+        <List pl={3} fontSize="large">
+          <ListItem>📬 mpgpascale@gmail.com</ListItem>
+          <ListItem>📞 (+598) 093934252</ListItem>
+          <ListItem>📍 Montevideo, Uruguay</ListItem>
+        </List>
+      </Box>
+      <AnimatedText
+        text=". . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . ."
+        textShadow="rgb(7, 7, 7) 1px 1px 8px, rgb(7, 7, 7) 1px 1px 8px"
+        fontSize="4xl"
+        textAlign="center"
+        width="100%"
+        duration={2}
+        amplitude={8}
+        delay={Math.random() - 0.5}
+      />
+      <Box>
+        <Text fontSize="xl">Links</Text>
+        <List pl={3} fontSize="large">
+          <ListItem>
+            <Link
+              href="https://www.linkedin.com/in/martin-pascale-garcia-370128149/"
+              color="blue.400"
+            >
+              LinkedIn
+            </Link>
+          </ListItem>
+          <ListItem>
+            <Link color="blue.400" href="https://github.com/MartinPascale">
+              GitHub
+            </Link>
+          </ListItem>
+          <ListItem>
+            <Link color="blue.400" href="https://martinpascale.dev/">
+              Website
+            </Link>
+          </ListItem>
+        </List>
+      </Box>
+    </Box>
   ),
   4: (
-    <List>
-      <li>React</li>
-      <li>TypeScript</li>
-      <li>Next</li>
-      <li>Node</li>
-      <li>AWS</li>
-      <li>Scrum</li>
-    </List>
+    <Box
+      gap={4}
+      justifyContent="center"
+      display="flex"
+      height="100%"
+      width="100%"
+      flexWrap="wrap"
+    >
+      <AnimatedCard>
+        <Box display="flex" justifyContent="space-between">
+          <Text fontSize="large">React </Text>
+          (5+ years)
+        </Box>
+      </AnimatedCard>
+      <AnimatedCard>
+        <Box display="flex" justifyContent="space-between">
+          <Text fontSize="large">Typescript </Text>
+          (4+ years)
+        </Box>
+      </AnimatedCard>
+      <AnimatedCard>
+        <Box display="flex" justifyContent="space-between">
+          <Text fontSize="large">Next </Text>
+          (3+ years)
+        </Box>
+      </AnimatedCard>
+      <AnimatedCard>
+        <Box display="flex" justifyContent="space-between">
+          <Text fontSize="large">Node </Text>
+          (3+ years)
+        </Box>
+      </AnimatedCard>
+      <AnimatedCard>
+        <Box display="flex" justifyContent="space-between">
+          <Text fontSize="large">Aws </Text>
+          (2 years)
+        </Box>
+      </AnimatedCard>
+      <AnimatedCard>
+        <Box display="flex" justifyContent="space-between">
+          <Text fontSize="large">Scrum </Text>
+          (6+ years)
+        </Box>
+      </AnimatedCard>
+    </Box>
   ),
   5: (
-    <List>
-      <li>
+    <Box
+      gap={4}
+      justifyContent="center"
+      display="flex"
+      height="100%"
+      width="100%"
+    >
+      <AnimatedCard width="30%">
         <strong>Professional Scrum Master I</strong> Scrum.org, Jan 2023
-      </li>
-      <li>
+      </AnimatedCard>
+      <AnimatedCard width="30%">
         <strong>English First Certificate</strong> Cambridge, Dec 2015
-      </li>
-      <li>
+      </AnimatedCard>
+      <AnimatedCard width="30%">
         <strong>Portuguese - Celpe Bras</strong> Colegio San Pablo, Dec 2015
-      </li>
-    </List>
+      </AnimatedCard>
+    </Box>
   ),
 };
 
 export const infoCards = [
-  { id: 1, content: 'Summary♥️' },
-  { id: 2, content: 'Experience' },
-  { id: 3, content: 'Contact' },
-  { id: 4, content: 'Skills♣️' },
-  { id: 5, content: 'Certifications' },
+  { id: 1, content: 'Summary', icon: <InfoIcon /> },
+  { id: 2, content: 'Experience', icon: <HamburgerIcon /> },
+  { id: 3, content: 'Contact', icon: <PhoneIcon /> },
+  { id: 4, content: 'Skills', icon: <CheckIcon /> },
+  { id: 5, content: 'Certifications', icon: <AttachmentIcon /> },
 ];

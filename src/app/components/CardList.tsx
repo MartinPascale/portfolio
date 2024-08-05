@@ -3,10 +3,12 @@ import { Box } from '@chakra-ui/react';
 import { DndProvider } from 'react-dnd';
 import { HTML5Backend } from 'react-dnd-html5-backend';
 import Card from './Card';
+import { InfoOutlineIcon, PhoneIcon } from '@chakra-ui/icons';
 
 interface Card {
   id: number;
   content: string;
+  icon: JSX.Element;
 }
 
 interface CardListProps {
@@ -24,7 +26,16 @@ const CardList: React.FC<CardListProps> = ({
 }) => {
   return (
     <DndProvider backend={HTML5Backend}>
-      <Box display="flex" justifyContent="center" alignItems="center" p={5}>
+      <Box
+        display="flex"
+        alignItems="center"
+        justifyContent="center"
+        flexWrap="wrap"
+        py={5}
+        px={10}
+        w="100%"
+        gap={2}
+      >
         {cards.map((card, index) => (
           <Card
             key={card.id}
@@ -34,6 +45,7 @@ const CardList: React.FC<CardListProps> = ({
             moveCard={handleMoveCard}
             isSelected={card.id === selectedCardId}
             onSelect={handleSelectCard}
+            icon={card.icon}
           />
         ))}
       </Box>

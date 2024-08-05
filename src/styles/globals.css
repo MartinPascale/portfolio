@@ -40,7 +40,7 @@ main {
 .tv-screen {
   border-radius: 30px;
   overflow: hidden;
-  padding: 40px;
+  padding: 24px;
   flex-grow: 1;
 }
 
