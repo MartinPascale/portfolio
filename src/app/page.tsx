@@ -1,5 +1,3 @@
-'use client';
-
 import { Box, Text } from '@chakra-ui/react';
 import ChatbotUI from './components/Chatbot';
 
@@ -12,6 +10,7 @@ const HomePage = () => {
         alignItems: 'center',
         flexDirection: 'column',
         height: '100%',
+        py: '24px',
       }}
     >
       <Box textAlign="left" w={{ base: '100%', md: '100%', lg: '66%' }}>

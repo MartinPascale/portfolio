@@ -16,10 +16,11 @@ export default function RootLayout({ children }: RootLayoutProps) {
         name="description"
         content="Martin Pascale is Senior Software engineer, this is his developer portfolio."
       ></meta>
-      <body className="crt-effect tv-frame tv-screen">
+      <body>
+        <div className="crt-effect tv-frame tv-screen" />
         <Chakra>
           <header>
-            <Box as="nav" py="25px">
+            <Box as="nav" sx={{ position: 'fixed', top: '35px', left: '35px' }}>
               <Link href="/" marginRight="10px">
                 Home
               </Link>

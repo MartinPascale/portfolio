@@ -1,3 +1,4 @@
+'use client';
 import { Box, HStack, Input, Link, Text } from '@chakra-ui/react';
 import { useEffect, useRef, useState } from 'react';
 import AnimatedButton from './AnimatedButton';
