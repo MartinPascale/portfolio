@@ -11,6 +11,11 @@ type RootLayoutProps = {
 export default function RootLayout({ children }: RootLayoutProps) {
   return (
     <html lang="en">
+      <title>Martin Pascale Developer Portfolio</title>
+      <meta
+        name="description"
+        content="Martin Pascale is Senior Software engineer, this is his developer portfolio."
+      ></meta>
       <body className="crt-effect tv-frame tv-screen">
         <Chakra>
           <header>

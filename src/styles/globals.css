@@ -11,7 +11,7 @@ body {
 }
 
 body {
-  background-image: url('../../public/background.jpeg') !important;
+  background-image: url('../../public/background.webp') !important;
   background-size: cover !important;
 }
 
