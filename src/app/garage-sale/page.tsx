@@ -30,7 +30,7 @@ const GarageSalePage = () => {
 
   return (
     <Box display="flex" flexDir="column" alignItems="center" gap={6}>
-      <Box display="flex" gap={4} flexWrap="wrap" justifyContent="center">
+      <Box className="box-container" display="flex" gap={4} flexWrap="wrap" justifyContent="center">
         {displayed.map((item) => (
           <AnimatedCard key={item.id} width="200px">
             <Box display="flex" flexDir="column" alignItems="center" gap={2}>
@@ -44,31 +44,33 @@ const GarageSalePage = () => {
         ))}
       </Box>
       <Button onClick={reroll}>Reroll</Button>
-      <Table variant="simple" mt={8} maxW="600px">
-        <Thead>
-          <Tr>
-            <Th>Image</Th>
-            <Th>Name</Th>
-            <Th>Description</Th>
-            <Th>Price</Th>
-            <Th>Notes</Th>
-          </Tr>
-        </Thead>
-        <Tbody>
-          {garageItems.map((item) => (
-            <Tr key={item.id}>
-              <Td>
-                {/* eslint-disable-next-line @next/next/no-img-element */}
-                <img src={item.image} alt={item.name} width="50" />
-              </Td>
-              <Td>{item.name}</Td>
-              <Td>{item.description}</Td>
-              <Td>{item.price}</Td>
-              <Td>{item.notes}</Td>
+      <Box className="box-container" mt={8}>
+        <Table variant="simple" maxW="600px" width="100%">
+          <Thead>
+            <Tr>
+              <Th>Image</Th>
+              <Th>Name</Th>
+              <Th>Description</Th>
+              <Th>Price</Th>
+              <Th>Notes</Th>
             </Tr>
-          ))}
-        </Tbody>
-      </Table>
+          </Thead>
+          <Tbody>
+            {garageItems.map((item) => (
+              <Tr key={item.id}>
+                <Td>
+                  {/* eslint-disable-next-line @next/next/no-img-element */}
+                  <img src={item.image} alt={item.name} width="50" />
+                </Td>
+                <Td>{item.name}</Td>
+                <Td>{item.description}</Td>
+                <Td>{item.price}</Td>
+                <Td>{item.notes}</Td>
+              </Tr>
+            ))}
+          </Tbody>
+        </Table>
+      </Box>
     </Box>
   );
 };
