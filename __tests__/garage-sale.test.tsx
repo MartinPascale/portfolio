@@ -15,14 +15,32 @@ jest.mock('next/image', () => ({
 }))
 
 describe('GarageSalePage', () => {
+  const getDisplayedNames = () =>
+    screen.getAllByRole('img').map((img) => img.getAttribute('alt'))
+
   it('changes displayed items when reroll button is clicked', async () => {
     render(<GarageSalePage />)
     const user = userEvent.setup()
 
-    const first = screen.getAllByText(/ - /).map(el => el.textContent)
+    const first = getDisplayedNames()
     await user.click(screen.getByRole('button', { name: /reroll/i }))
-    const second = screen.getAllByText(/ - /).map(el => el.textContent)
+    const second = getDisplayedNames()
 
     expect(second.join()).not.toBe(first.join())
+  })
+
+  it('decrements rerolls and disables button at zero', async () => {
+    render(<GarageSalePage />)
+    const user = userEvent.setup()
+    const button = screen.getByRole('button', { name: /reroll/i })
+    const counter = screen.getByTestId('rerolls')
+
+    expect(counter).toHaveTextContent('Rerolls Left: 3')
+    await user.click(button)
+    expect(counter).toHaveTextContent('Rerolls Left: 2')
+    await user.click(button)
+    await user.click(button)
+    expect(counter).toHaveTextContent('Rerolls Left: 0')
+    expect(button).toBeDisabled()
   })
 })
