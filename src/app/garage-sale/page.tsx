@@ -4,7 +4,6 @@ import { useEffect, useState } from 'react';
 import {
   Box,
   Button,
-  Image,
   Table,
   Tbody,
   Td,
@@ -13,6 +12,7 @@ import {
   Tr,
   Text,
 } from '@chakra-ui/react';
+import NextImage from 'next/image';
 import AnimatedCard from '../components/AnimatedCard';
 import { GarageItem, garageItems } from '@/constants/garageSale';
 
@@ -29,23 +29,26 @@ const GarageSalePage = () => {
   }, []);
 
   return (
-    <Box display="flex" flexDir="column" alignItems="center" gap={6}>
-      <Box className="box-container" display="flex" gap={4} flexWrap="wrap" justifyContent="center">
-        {displayed.map((item) => (
-          <AnimatedCard key={item.id} width="200px">
-            <Box display="flex" flexDir="column" alignItems="center" gap={2}>
-              {/* eslint-disable-next-line @next/next/no-img-element */}
-              <img src={item.image} alt={item.name} style={{ width: '100%' }} />
-              <Text fontSize="lg" textAlign="center">
-                {item.name} - {item.price}
-              </Text>
-            </Box>
-          </AnimatedCard>
-        ))}
+    <Box display="flex" flexDir={{ base: 'column', lg: 'row' }} gap={6} alignItems="flex-start">
+      <Box flex="1" className="box-container">
+        <Box display="flex" gap={4} flexWrap="wrap" justifyContent="center">
+          {displayed.map((item) => (
+            <AnimatedCard key={item.id} width="250px">
+              <Box display="flex" flexDir="column" alignItems="center" gap={2}>
+                <NextImage src={item.image} alt={item.name} width={300} height={200} style={{ width: '100%', height: 'auto' }} unoptimized />
+                <Text fontSize="lg" textAlign="center">
+                  {item.name} - {item.price}
+                </Text>
+              </Box>
+            </AnimatedCard>
+          ))}
+        </Box>
+        <Button onClick={reroll} mt={4} display="block" mx="auto">
+          Reroll
+        </Button>
       </Box>
-      <Button onClick={reroll}>Reroll</Button>
-      <Box className="box-container" mt={8}>
-        <Table variant="simple" maxW="600px" width="100%">
+      <Box flex="1" className="box-container">
+        <Table variant="simple" width="100%">
           <Thead>
             <Tr>
               <Th>Image</Th>

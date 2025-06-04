@@ -5,6 +5,14 @@ import GarageSalePage from '../src/app/garage-sale/page'
 
 // simplify complex component for testing
 jest.mock('../src/app/components/AnimatedCard', () => (props: any) => <div {...props} />)
+jest.mock('next/image', () => ({
+  __esModule: true,
+  default: (props: any) => {
+    const { unoptimized, ...rest } = props
+    // eslint-disable-next-line @next/next/no-img-element
+    return <img {...rest} />
+  },
+}))
 
 describe('GarageSalePage', () => {
   it('changes displayed items when reroll button is clicked', async () => {
