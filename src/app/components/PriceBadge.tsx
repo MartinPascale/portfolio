@@ -18,9 +18,10 @@ export default function PriceBadge({ price, ...rest }: PriceBadgeProps) {
       py={1}
       borderRadius="md"
       fontWeight="bold"
+      fontSize="sm"
       {...rest}
     >
-      <Text fontSize="sm">{price}</Text>
+      <Text fontSize="inherit">{price}</Text>
     </Box>
   );
 }

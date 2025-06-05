@@ -64,11 +64,19 @@ const GarageSalePage = () => {
         right={{ base: 0, md: 'auto' }}
         zIndex={1}
       >
-        <Text fontSize="2xl" textAlign="center">
+        <Text fontSize="4xl" textAlign="center">
           Garage Sale
         </Text>
-        <Text>Browse our items below</Text>
-        <PriceBadge price={`$${money}`} position="static" transform="none" data-testid="money" />
+        <Text fontSize="2xl">Browse our items below</Text>
+        <PriceBadge
+          price={`$${money}`}
+          position="static"
+          transform="none"
+          px={8}
+          py={6}
+          fontSize="2xl"
+          data-testid="money"
+        />
         <RerollButton onClick={reroll} isDisabled={money < 5} dollars={5} aria-label="Reroll $5">
           Reroll
         </RerollButton>
@@ -81,11 +89,11 @@ const GarageSalePage = () => {
       </Box>
       <Box
         flex="1"
-        display={{ md: 'flex' }}
-        flexDirection={{ base: 'column', md: 'row' }}
+        display="flex"
+        flexDirection="column"
         pb={{ base: '140px', md: 0 }}
       >
-        <Box flex="3" p={4} className="box-container" mr={{ md: 4 }}>
+        <Box width="100%" p={4} className="box-container" mb={4}>
           <Grid templateColumns={{ base: '1fr', sm: 'repeat(2, 1fr)', md: 'repeat(3, 1fr)' }} gap={4}>
             {displayed.map((item) => (
               <Box key={item.id} position="relative" border="1px solid #E2E8F0" borderRadius="md" boxShadow="sm">
@@ -103,7 +111,7 @@ const GarageSalePage = () => {
             ))}
           </Grid>
         </Box>
-        <Box flex="2" overflowX="auto" className="box-container" p={4}>
+        <Box width="100%" overflowX="auto" className="box-container" p={4}>
           <Table bg="white" border="1px solid #E2E8F0">
             <Thead bg="#EDF2F7">
               <Tr>
