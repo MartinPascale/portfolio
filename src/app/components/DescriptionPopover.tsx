@@ -1,32 +1,27 @@
 'use client';
-import { InfoIcon } from '@chakra-ui/icons';
+import { ReactNode } from 'react';
 import {
   Popover,
   PopoverTrigger,
   PopoverContent,
   PopoverBody,
   PopoverArrow,
-  IconButton,
-  IconButtonProps,
+  Box,
+  BoxProps,
 } from '@chakra-ui/react';
 
-interface DescriptionPopoverProps extends Omit<IconButtonProps, 'aria-label'> {
+interface DescriptionPopoverProps extends BoxProps {
   description: string;
+  children: ReactNode;
 }
 
-export default function DescriptionPopover({ description, ...rest }: DescriptionPopoverProps) {
+export default function DescriptionPopover({ description, children, ...rest }: DescriptionPopoverProps) {
   return (
     <Popover placement="top" trigger="hover">
       <PopoverTrigger>
-        <IconButton
-          aria-label="Show description"
-          icon={<InfoIcon />}
-          size="sm"
-          bg="gray.700"
-          color="white"
-          _hover={{ bg: 'gray.600' }}
-          {...rest}
-        />
+        <Box display="inline-block" {...rest}>
+          {children}
+        </Box>
       </PopoverTrigger>
       <PopoverContent color="black">
         <PopoverArrow />

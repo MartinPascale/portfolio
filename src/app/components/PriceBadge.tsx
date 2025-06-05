@@ -9,7 +9,7 @@ export default function PriceBadge({ price, ...rest }: PriceBadgeProps) {
   return (
     <Box
       position="absolute"
-      top={2}
+      top="-8px"
       left="50%"
       transform="translateX(-50%)"
       bg="black"

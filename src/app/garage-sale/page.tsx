@@ -48,29 +48,57 @@ const GarageSalePage = () => {
   }, []);
 
   return (
-    <Box display="flex" flexDirection={{ base: 'column', md: 'row' }} minHeight="100vh" width="100%">
+    <Box display="flex" flexDirection={{ base: 'column', md: 'row' }} minHeight="100vh" width="100%" className="garage-bg">
+      <Box
+        width={{ base: '100%', md: '250px' }}
+        bg="#2D3748"
+        color="#EDF2F7"
+        p={4}
+        display="flex"
+        flexDirection="column"
+        alignItems="center"
+        gap={4}
+        position={{ base: 'fixed', md: 'static' }}
+        bottom={{ base: 0, md: 'auto' }}
+        left={{ base: 0, md: 'auto' }}
+        right={{ base: 0, md: 'auto' }}
+        zIndex={1}
+      >
+        <Text fontSize="2xl" textAlign="center">
+          Garage Sale
+        </Text>
+        <Text>Browse our items below</Text>
+        <PriceBadge price={`$${money}`} position="static" transform="none" data-testid="money" />
+        <RerollButton onClick={reroll} isDisabled={money < 5} dollars={5} aria-label="Reroll $5">
+          Reroll
+        </RerollButton>
+        <Box mt="auto" display="flex" flexDirection="column" alignItems="center" gap={1} pb={4}>
+          <Link href="/">Home</Link>
+          <Link href="/about">About</Link>
+          <Link href="/projects">Projects</Link>
+          <Link href="/garage-sale">Garage Sale</Link>
+        </Box>
+      </Box>
       <Box
         flex="1"
         display={{ md: 'flex' }}
         flexDirection={{ base: 'column', md: 'row' }}
-        bg="#1D3C2D"
         pb={{ base: '140px', md: 0 }}
       >
         <Box flex="3" p={4} className="box-container" mr={{ md: 4 }}>
           <Grid templateColumns={{ base: '1fr', sm: 'repeat(2, 1fr)', md: 'repeat(3, 1fr)' }} gap={4}>
             {displayed.map((item) => (
               <Box key={item.id} position="relative" border="1px solid #E2E8F0" borderRadius="md" boxShadow="sm">
-                <AnimatedCard width="100%">
-                  <PriceBadge price={item.price} />
-                  <Box position="absolute" top={2} right={2} zIndex={1}>
-                    <DescriptionPopover description={item.description} />
-                  </Box>
-                  <NextImage src={item.image} alt={item.name} width={300} height={200} style={{ width: '100%', height: 'auto' }} unoptimized />
-                  <Box mt={2}>
-                    <Text fontWeight="bold">{item.name}</Text>
-                    <Text fontSize="sm">{item.notes}</Text>
-                  </Box>
-                </AnimatedCard>
+                <DescriptionPopover description={item.description} width="100%">
+                  <AnimatedCard width="100%">
+                    <PriceBadge price={item.price} />
+                    <NextImage src={item.image} alt={item.name} width={300} height={200} style={{ width: '100%', height: 'auto' }} unoptimized />
+                    <Box mt={2}>
+                      <Text fontWeight="bold">{item.name}</Text>
+                      <Text fontSize="sm">{item.notes}</Text>
+                    </Box>
+                  </AnimatedCard>
+                </DescriptionPopover>
               </Box>
             ))}
           </Grid>
@@ -109,37 +137,6 @@ const GarageSalePage = () => {
           width="100%"
         >
           <Text color="#4A5568">© 2025 My Garage Sale</Text>
-        </Box>
-      </Box>
-      <Box
-        width={{ base: '100%', md: '250px' }}
-        bg="#2D3748"
-        color="#EDF2F7"
-        p={4}
-        display="flex"
-        flexDirection="column"
-        alignItems="center"
-        gap={4}
-        position={{ base: 'fixed', md: 'static' }}
-        bottom={{ base: 0, md: 'auto' }}
-        left={{ base: 0, md: 'auto' }}
-        right={{ base: 0, md: 'auto' }}
-      >
-        <Text fontSize="2xl" textAlign="center">
-          Garage Sale
-        </Text>
-        <Text>Browse our items below</Text>
-        <Box bg="#1A202C" color="#FFFFFF" px={4} py={2} borderRadius="md" data-testid="money">
-          {`Money: $${money}`}
-        </Box>
-        <RerollButton onClick={reroll} isDisabled={money < 5} dollars={5} aria-label="Reroll $5">
-          Reroll
-        </RerollButton>
-        <Box mt="auto" display="flex" flexDirection="column" alignItems="center" gap={1}>
-          <Link href="/">Home</Link>
-          <Link href="/about">About</Link>
-          <Link href="/projects">Projects</Link>
-          <Link href="/garage-sale">Garage Sale</Link>
         </Box>
       </Box>
     </Box>

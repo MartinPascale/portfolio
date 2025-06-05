@@ -18,17 +18,17 @@ export default function RerollButton({ dollars, children, ...rest }: RerollButto
       display="flex"
       flexDirection="column"
       alignItems="center"
-      py={4}
-      px={6}
-      fontSize="lg"
+      py={6}
+      px={8}
+      fontSize="xl"
       whileTap={{ scale: 0.95 }}
       {...rest}
     >
       <Text lineHeight="1" fontSize="xl">
         {children}
       </Text>
-      <Text lineHeight="1" fontSize="sm">
-        ${`$${dollars}`}
+      <Text lineHeight="1" fontSize="2xl">
+        {`$${dollars}`}
       </Text>
     </MotionButton>
   );
