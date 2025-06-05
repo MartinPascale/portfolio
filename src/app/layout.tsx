@@ -27,7 +27,10 @@ export default function RootLayout({ children }: RootLayoutProps) {
               <Link href="/about" marginRight="10px">
                 About
               </Link>
-              <Link href="/projects">Projects</Link>
+              <Link href="/projects" marginRight="10px">
+                Projects
+              </Link>
+              <Link href="/garage-sale">Garage Sale</Link>
             </Box>
           </header>
           <main>{children}</main>
