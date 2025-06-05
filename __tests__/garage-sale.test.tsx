@@ -29,18 +29,21 @@ describe('GarageSalePage', () => {
     expect(second.join()).not.toBe(first.join())
   })
 
-  it('decrements rerolls and disables button at zero', async () => {
+  it('decrements money and disables button when out of cash', async () => {
     render(<GarageSalePage />)
     const user = userEvent.setup()
     const button = screen.getByRole('button', { name: /reroll/i })
-    const counter = screen.getByTestId('rerolls')
+    const counter = screen.getByTestId('money')
 
-    expect(counter).toHaveTextContent('Rerolls Left: 3')
+    expect(counter).toHaveTextContent('Money: $20')
     await user.click(button)
-    expect(counter).toHaveTextContent('Rerolls Left: 2')
+    expect(counter).toHaveTextContent('Money: $15')
     await user.click(button)
+    expect(counter).toHaveTextContent('Money: $10')
     await user.click(button)
-    expect(counter).toHaveTextContent('Rerolls Left: 0')
+    expect(counter).toHaveTextContent('Money: $5')
+    await user.click(button)
+    expect(counter).toHaveTextContent('Money: $0')
     expect(button).toBeDisabled()
   })
 })

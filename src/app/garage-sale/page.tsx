@@ -17,11 +17,11 @@ import NextImage from 'next/image';
 import AnimatedCard from '../components/AnimatedCard';
 import { GarageItem, garageItems } from '@/constants/garageSale';
 
-const START_REROLLS = 3;
+const START_MONEY = 20;
 
 const GarageSalePage = () => {
   const [displayed, setDisplayed] = useState<GarageItem[]>([]);
-  const [rerolls, setRerolls] = useState(START_REROLLS);
+  const [money, setMoney] = useState(START_MONEY);
 
   const pickItems = () => {
     const shuffled = [...garageItems].sort(() => 0.5 - Math.random());
@@ -29,53 +29,29 @@ const GarageSalePage = () => {
   };
 
   const reroll = () => {
-    if (rerolls <= 0) return;
+    if (money < 5) return;
     pickItems();
-    setRerolls(rerolls - 1);
+    setMoney(money - 5);
   };
 
   useEffect(() => {
     pickItems();
+    const header = document.querySelector('header');
+    const prevDisplay = header?.style.display;
+    if (header) (header as HTMLElement).style.display = 'none';
+    return () => {
+      if (header) (header as HTMLElement).style.display = prevDisplay || '';
+    };
   }, []);
 
   return (
-    <Box display="flex" height="100%" width="100%">
-      <Box
-        width={{ base: '100%', md: '250px' }}
-        bg="#2D3748"
-        color="#EDF2F7"
-        p={4}
-        display="flex"
-        flexDirection="column"
-        alignItems="center"
-        gap={4}
-      >
-        <Text fontSize="2xl" textAlign="center">
-          Garage Sale
-        </Text>
-        <Text>Browse our items below</Text>
-        <Box
-          bg="#1A202C"
-          color="#FFFFFF"
-          px={4}
-          py={2}
-          borderRadius="md"
-          data-testid="rerolls"
-        >
-          Rerolls Left: {rerolls}
-        </Box>
-        <Button
-          bg="#48BB78"
-          border="2px solid #2F855A"
-          color="#FFFFFF"
-          _hover={{ bg: '#2F855A' }}
-          onClick={reroll}
-          isDisabled={rerolls === 0}
-        >
-          Reroll ($5)
-        </Button>
-      </Box>
-      <Box flex="1" display="flex" flexDirection="column" bg="#F7FAFC">
+    <Box
+      display="flex"
+      flexDirection={{ base: 'column', md: 'row' }}
+      minHeight="100vh"
+      width="100%"
+    >
+      <Box flex="1" display="flex" flexDirection="column" bg="#F7FAFC" pb={{ base: '140px', md: 0 }}>
         <Grid
           templateColumns={{ base: '1fr', sm: 'repeat(2, 1fr)', md: 'repeat(3, 1fr)' }}
           gap={4}
@@ -83,12 +59,7 @@ const GarageSalePage = () => {
           flex="1"
         >
           {displayed.map((item) => (
-            <Box
-              key={item.id}
-              border="1px solid #E2E8F0"
-              borderRadius="md"
-              boxShadow="sm"
-            >
+            <Box key={item.id} border="1px solid #E2E8F0" borderRadius="md" boxShadow="sm">
               <AnimatedCard width="100%">
                 <NextImage
                   src={item.image}
@@ -138,6 +109,45 @@ const GarageSalePage = () => {
         <Box mt="auto" bg="#EDF2F7" textAlign="center" py={2}>
           <Text color="#4A5568">© 2025 My Garage Sale</Text>
         </Box>
+      </Box>
+      <Box
+        width={{ base: '100%', md: '250px' }}
+        bg="#2D3748"
+        color="#EDF2F7"
+        p={4}
+        display="flex"
+        flexDirection="column"
+        alignItems="center"
+        gap={4}
+        position={{ base: 'fixed', md: 'static' }}
+        bottom={{ base: 0, md: 'auto' }}
+        left={{ base: 0, md: 'auto' }}
+        right={{ base: 0, md: 'auto' }}
+      >
+        <Text fontSize="2xl" textAlign="center">
+          Garage Sale
+        </Text>
+        <Text>Browse our items below</Text>
+        <Box
+          bg="#1A202C"
+          color="#FFFFFF"
+          px={4}
+          py={2}
+          borderRadius="md"
+          data-testid="money"
+        >
+          {`Money: $${money}`}
+        </Box>
+        <Button
+          bg="#48BB78"
+          border="2px solid #2F855A"
+          color="#FFFFFF"
+          _hover={{ bg: '#2F855A' }}
+          onClick={reroll}
+          isDisabled={money < 5}
+        >
+          Reroll ($5)
+        </Button>
       </Box>
     </Box>
   );
