@@ -91,6 +91,12 @@ const ChatbotUI = () => {
           placeholder="Type a message..."
           value={input}
           onChange={(e) => setInput(e.target.value)}
+          onKeyDown={(e) => {
+            if (e.key === 'Enter') {
+              e.preventDefault();
+              handleSend();
+            }
+          }}
         />
         <AnimatedButton onClick={handleSend} isLoading={loading}>
           Send
