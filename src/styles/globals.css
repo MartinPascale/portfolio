@@ -79,6 +79,11 @@ main {
   margin-top: 16px;
 }
 
+.garage-bg {
+  background-image: radial-gradient(circle at 30% 30%, #3C7A4D, #1D3C2D);
+  background-repeat: repeat;
+}
+
 .box-header {
   background-color: #555;
   padding: 10px;
