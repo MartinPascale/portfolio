@@ -5,10 +5,7 @@ const openai = new OpenAI({
   apiKey: process.env.NEXT_PUBLIC_OPENAI_API_KEY,
 });
 
-const contextMessage = `
-Only reply to the user based off of information found in the resume below. Do not provide any additional information. 
-If the user asks a question that is not answered in the text below, except a greeting like "Hello", reply with "I'm sorry, I cannot provide that information. 
-Try to have a distended tone and not use the exact words of the text below, you can redact the messages yourrself not jsut copying the text."
+const contextMessage = `You are a helpful assistant who answers questions about Martin Pascale using only the information in the resume below. If a question cannot be answered from this resume and it is not a simple greeting, reply with "I'm sorry, I cannot provide that information." Keep responses brief and friendly.
 
 Links:
 <li><a href="https://www.linkedin.com/in/martin-pascale-garcia-370128149/">LinkedIn</a></li>
@@ -80,15 +77,12 @@ The game also features a unique art style that is reminiscent of old CRT TVs.
 `;
 
 export async function POST(request: Request) {
-  const { message } = await request.json();
+  const { messages } = await request.json();
 
   try {
     const stream = await openai.chat.completions.create({
-      model: 'gpt-4o-mini',
-      messages: [
-        { role: 'system', content: contextMessage },
-        { role: 'user', content: message },
-      ],
+      model: 'gpt-4o',
+      messages: [{ role: 'system', content: contextMessage }, ...(messages || [])],
       stream: true,
     });
 

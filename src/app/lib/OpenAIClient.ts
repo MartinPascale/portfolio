@@ -4,8 +4,7 @@ const openai = new OpenAI({
   apiKey: process.env.NEXT_PUBLIC_OPENAI_API_KEY,
 });
 
-const contextMessage = `
-Only reply to the user with information found in the resume below. Do not provide any additional information.
+const contextMessage = `You are a helpful assistant who answers questions about Martin Pascale using only the information in the resume below. If the resume does not contain the answer and the user is not just greeting you, reply with "I'm sorry, I cannot provide that information." Keep responses brief and friendly.
 
 Persona
 Martin Pascale is a 25 year old senior softare engineer who lives in montevideo uruguay. He has more than 5 years of experience in the field.
@@ -63,15 +62,12 @@ Facultad de Ingenieria UDELAR March 2017 to Nov 2021
 Software Engineering`;
 
 export async function getOpenAIResponseStream(
-  message: string,
+  messages: { role: string; content: string }[],
   onData: (data: string) => void,
 ) {
   const stream = await openai.chat.completions.create({
-    model: 'gpt-4o-mini',
-    messages: [
-      { role: 'user', content: contextMessage },
-      { role: 'user', content: message },
-    ],
+    model: 'gpt-4o',
+    messages: [{ role: 'system', content: contextMessage }, ...messages],
     stream: true,
   });
   for await (const chunk of stream) {

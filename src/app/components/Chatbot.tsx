@@ -35,7 +35,13 @@ const ChatbotUI = () => {
 
     setLoading(true);
     const userMessage = { role: 'user', content: input };
-    setMessages((prevMessages) => [...prevMessages, userMessage]);
+    const newMessages = [...messages, userMessage];
+    setMessages(newMessages);
+
+    const payload = newMessages.slice(1).map((msg) => ({
+      role: msg.role === 'bot' ? 'assistant' : 'user',
+      content: msg.content,
+    }));
 
     try {
       const response = await fetch('/api/openai', {
@@ -43,7 +49,7 @@ const ChatbotUI = () => {
         headers: {
           'Content-Type': 'application/json',
         },
-        body: JSON.stringify({ message: input }),
+        body: JSON.stringify({ messages: payload }),
       });
 
       if (!response.ok) {
