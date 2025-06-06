@@ -11,7 +11,6 @@ import {
   Thead,
   Tr,
   Text,
-  Link,
 } from '@chakra-ui/react';
 import NextImage from 'next/image';
 import AnimatedCard from '../components/AnimatedCard';
@@ -19,6 +18,8 @@ import RerollButton from '../components/RerollButton';
 import PriceBadge from '../components/PriceBadge';
 import DescriptionPopover from '../components/DescriptionPopover';
 import { GarageItem, garageItems } from '@/constants/garageSale';
+import Link from 'next/link';
+import Image from 'next/image';
 
 const START_MONEY = 20;
 
@@ -47,10 +48,22 @@ const GarageSalePage = () => {
     };
   }, []);
 
+  useEffect(() => {
+    document.body.classList.add('garage-bg');
+    return () => {
+      document.body.classList.remove('garage-bg');
+    };
+  }, []);
+
   return (
-    <Box display="flex" flexDirection={{ base: 'column', md: 'row' }} minHeight="100vh" width="100%" className="garage-bg">
+    <Box
+      display="flex"
+      flexDirection={{ base: 'column', md: 'row' }}
+      minHeight="100vh"
+      width="100%"
+      gap={{ base: 0, md: 8 }}
+    >
       <Box
-        width={{ base: '100%', md: '250px' }}
         bg="#2D3748"
         color="#EDF2F7"
         p={4}
@@ -58,11 +71,7 @@ const GarageSalePage = () => {
         flexDirection="column"
         alignItems="center"
         gap={4}
-        position={{ base: 'fixed', md: 'static' }}
-        bottom={{ base: 0, md: 'auto' }}
-        left={{ base: 0, md: 'auto' }}
-        right={{ base: 0, md: 'auto' }}
-        zIndex={1}
+        flex={2}
       >
         <Text fontSize="4xl" textAlign="center">
           Garage Sale
@@ -77,10 +86,22 @@ const GarageSalePage = () => {
           fontSize="2xl"
           data-testid="money"
         />
-        <RerollButton onClick={reroll} isDisabled={money < 5} dollars={5} aria-label="Reroll $5">
+        <RerollButton
+          onClick={reroll}
+          isDisabled={money < 5}
+          dollars={5}
+          aria-label="Reroll $5"
+        >
           Reroll
         </RerollButton>
-        <Box mt="auto" display="flex" flexDirection="column" alignItems="center" gap={1} pb={4}>
+        <Box
+          mt="auto"
+          display="flex"
+          flexDirection="column"
+          alignItems="center"
+          gap={1}
+          pb={4}
+        >
           <Link href="/">Home</Link>
           <Link href="/about">About</Link>
           <Link href="/projects">Projects</Link>
@@ -88,19 +109,39 @@ const GarageSalePage = () => {
         </Box>
       </Box>
       <Box
-        flex="1"
         display="flex"
         flexDirection="column"
         pb={{ base: '140px', md: 0 }}
+        flex={7}
       >
         <Box width="100%" p={4} className="box-container" mb={4}>
-          <Grid templateColumns={{ base: '1fr', sm: 'repeat(2, 1fr)', md: 'repeat(3, 1fr)' }} gap={4}>
+          <Grid
+            templateColumns={{
+              base: '1fr',
+              sm: 'repeat(2, 1fr)',
+              md: 'repeat(3, 1fr)',
+            }}
+            gap={4}
+          >
             {displayed.map((item) => (
-              <Box key={item.id} position="relative" border="1px solid #E2E8F0" borderRadius="md" boxShadow="sm">
+              <Box
+                key={item.id}
+                position="relative"
+                border="1px solid #E2E8F0"
+                borderRadius="md"
+                boxShadow="sm"
+              >
                 <DescriptionPopover description={item.description} width="100%">
                   <AnimatedCard width="100%">
                     <PriceBadge price={item.price} />
-                    <NextImage src={item.image} alt={item.name} width={300} height={200} style={{ width: '100%', height: 'auto' }} unoptimized />
+                    <NextImage
+                      src={item.image}
+                      alt={item.name}
+                      width={300}
+                      height={200}
+                      style={{ width: '100%', height: 'auto' }}
+                      unoptimized
+                    />
                     <Box mt={2}>
                       <Text fontWeight="bold">{item.name}</Text>
                       <Text fontSize="sm">{item.notes}</Text>
@@ -125,7 +166,8 @@ const GarageSalePage = () => {
             <Tbody>
               {garageItems.map((item) => (
                 <Tr key={item.id}>
-                  <Td>{/* eslint-disable-next-line @next/next/no-img-element */}
+                  <Td>
+                    {/* eslint-disable-next-line @next/next/no-img-element */}
                     <img src={item.image} alt={item.name} width="50" />
                   </Td>
                   <Td>{item.name}</Td>

@@ -11,7 +11,6 @@ body {
 }
 
 body {
-  background-image: url('../../public/background.webp') !important;
   background-position: center !important;
   background-size: cover !important;
   border-radius: 35px;
@@ -79,8 +78,13 @@ main {
   margin-top: 16px;
 }
 
+.default-bg {
+  background-image: url('../../public/background.webp') !important;
+  background-repeat: repeat;
+}
+
 .garage-bg {
-  background-image: radial-gradient(circle at 30% 30%, #3C7A4D, #1D3C2D);
+  background-image: url('../../public/garage-sale-background.png') !important;
   background-repeat: repeat;
 }
 

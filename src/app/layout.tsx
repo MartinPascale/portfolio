@@ -16,7 +16,7 @@ export default function RootLayout({ children }: RootLayoutProps) {
         name="description"
         content="Martin Pascale is Senior Software engineer, this is his developer portfolio."
       ></meta>
-      <body>
+      <body className="default-bg">
         <div className="crt-effect tv-frame tv-screen" />
         <Chakra>
           <header>
