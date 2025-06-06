@@ -1,4 +1,5 @@
 import OpenAI from 'openai';
+import type { ChatCompletionMessageParam } from 'openai/resources/chat/completions';
 
 const openai = new OpenAI({
   apiKey: process.env.NEXT_PUBLIC_OPENAI_API_KEY,
@@ -62,7 +63,7 @@ Facultad de Ingenieria UDELAR March 2017 to Nov 2021
 Software Engineering`;
 
 export async function getOpenAIResponseStream(
-  messages: { role: string; content: string }[],
+  messages: ChatCompletionMessageParam[],
   onData: (data: string) => void,
 ) {
   const stream = await openai.chat.completions.create({
